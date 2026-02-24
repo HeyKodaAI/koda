@@ -1,11 +1,10 @@
-
 <div align="center">
 
 # 🐾 Koda AI
 
-### The AI agent that never lies.
+### The self-evolving AI agent that never lies.
 
-**Open source · Self-hosted · Voice-enabled · Honest by design**
+**Open source · Self-hosted · Voice-enabled · Self-evolving · Honest by design**
 
 [Website](https://heykoda.ai) · [Sign Up for Early Access](https://heykoda.ai) · [Twitter](https://x.com/HeyKodaAI)
 
@@ -13,7 +12,7 @@
 
 ---
 
-**25 modules · 23 pages · 100+ API endpoints · 72 tools · 657+ tests passing**
+**25 modules · 23 pages · 100+ API endpoints · 83+ tools · 657+ tests passing**
 
 **Status: Feature complete. Now in testing.**
 
@@ -27,7 +26,9 @@ Koda is a fully open-source personal AI agent with a purpose-built dashboard, lo
 
 Ask it to check your email. Control your lights. Draft a reply. Review a pull request. Schedule a meeting. Send a text. Generate an image. Monitor your servers. It does all of it from one interface — and if something fails, it tells you what went wrong instead of pretending it worked.
 
-One app. One friend. Everything connected.
+What makes Koda unlike anything else: **she can upgrade herself.** Ask her to add a capability she doesn't have, and she'll read her own source code, write a new tool module, test it, register it at runtime, and use it — all in the same conversation. Connect a USB camera and tell her it's there; she'll code her own vision module.
+
+One app. One friend. Everything connected. Always evolving.
 
 ---
 
@@ -86,7 +87,7 @@ Every action is independently verified before being reported. If it fails, you g
 
 The agent orchestrator is the core loop — receive message, think, call tools, verify outcomes, respond. It powers everything.
 
-- 50+ tools registered across all modules
+- 83+ tools registered across all modules
 - Quality gate strips robotic phrases and AI-isms
 - Voice-aware responses (shorter sentences, contractions when speaking)
 - Correction tracker learns from your feedback
@@ -137,6 +138,20 @@ Koda manages a team of specialized AI workers.
 - Task assignment with status tracking and per-agent budgets
 - All communication flows through Koda — no unsupervised agent-to-agent chatter
 - Agent lifecycle: Create → Active → Idle → Sleep → Wake → Retire
+
+### 🧬 Self-Evolution Engine
+
+Koda's most unique capability — she can read, modify, and extend her own codebase at runtime.
+
+- **Terminal Access** — Full shell execution with output capture, timeout protection, and dangerous command blocking
+- **Code Introspection** — Read any of her own source modules, explore her codebase structure
+- **Self-Modification** — Write new tool modules or modify existing ones, with automatic backup and syntax validation before every write
+- **Runtime Registration** — Hot-load new tools without restarting. Create a capability and use it in the same conversation
+- **Auto-Restart** — Trigger uvicorn reload for deep changes (frontend auto-reconnects)
+- **Hardware Integration** — Detect connected USB devices, webcams, and audio hardware. Install Python packages on the fly. Write her own integration code for new peripherals
+- **Safety Guardrails** — All code paths validated to stay within the source directory. CRITICAL risk tier on writes and restarts requires explicit user approval. Automatic backups before every modification. Protected module warnings for core files
+
+*Example: "Hey Koda, I plugged in a USB camera. Can you use it?"* → Koda detects the hardware, reads her own code patterns, writes an OpenCV-based camera tool, installs the dependency, registers the tool, and captures an image — all autonomously.
 
 ### 🎯 Command Center
 
@@ -247,7 +262,47 @@ Every action Koda takes is logged in a searchable timeline — filterable by typ
 
 ---
 
+## Architecture
+
+```
+koda-ai/
+├── backend/                 Python FastAPI
+│   └── src/koda/
+│       ├── agent/           Core LLM orchestration + tool registry + self-evolution
+│       ├── agents/          Multi-agent manager + task executor
+│       ├── browser/         Chrome Extension bridge + Playwright fallback
+│       ├── claude_accounts/ Multi-account Claude Max management
+│       ├── command_center/  Session monitoring + shell execution
+│       ├── company/         Brand, team, workflows, analytics
+│       ├── config/          Settings + environment
+│       ├── devtools/        GitHub, SSH, cPanel, hardware detection
+│       ├── filesystem/      Sandboxed file operations
+│       ├── integrations/    Email, calendar, SMS, smart home
+│       ├── memory/          4-tier memory system + secret detection
+│       ├── permissions/     4-tier risk system + audit
+│       ├── personality/     Identity, tone, capabilities awareness
+│       ├── skills/          Extensible skill framework
+│       ├── vault/           Encrypted credentials (AES-256-GCM)
+│       ├── verification/    Task output verification
+│       ├── voice/           TTS (Kokoro), STT (Whisper), wake word
+│       └── activity/        Timeline + API key management
+├── frontend/                Next.js 16 + Tailwind CSS
+│   └── src/
+│       ├── app/             23 pages (dashboard, chat, agents, etc.)
+│       ├── components/      Shared UI components
+│       ├── hooks/           Custom React hooks (voice, shortcuts)
+│       └── lib/             API client + utilities
+├── install.sh               One-command installer (macOS/Linux)
+├── install.ps1              One-command installer (Windows)
+├── koda                     CLI (start, stop, status, logs, dev)
+├── koda.ps1                 CLI (Windows)
+└── docker-compose.yml       Full-stack Docker deployment
+```
+
+---
+
 ## Quick Start
+
 ```bash
 # One command
 ./install.sh
@@ -293,7 +348,7 @@ docker compose up
 | Layer | Technology |
 |-------|-----------|
 | Backend | Python 3.11+ · FastAPI · SQLite · Pydantic |
-| Frontend | Next.js 14 · React · TypeScript · Tailwind CSS |
+| Frontend | Next.js 16 · React · TypeScript · Tailwind CSS |
 | Voice | Kokoro TTS · Piper TTS · MLX Whisper · OpenWakeWord |
 | LLM | Anthropic Claude + OpenAI GPT (runtime-switchable) |
 | Browser | Playwright + Chrome Extension |
@@ -311,6 +366,7 @@ docker compose up
 | **Voice** | Cloud-based | 100% local — your voice never leaves your machine |
 | **Permissions** | All-or-nothing | Deny-by-default, 4-tier risk classification |
 | **Personality** | "Reality check, Mike" | Warm, configurable, never condescending |
+| **Self-Evolution** | No | Reads, modifies, and extends her own source code at runtime |
 | **Setup** | Complex CLI | One-command installer |
 | **Skills** | 12% malware rate | Sandboxed and verified |
 | **Smart Home** | No | Govee + Home Assistant (2,000+ devices) |
@@ -358,7 +414,7 @@ MIT — Open source. Open book. Always.
 
 <div align="center">
 
-**Open Source. Open Book. Koda AI.**
+**Open Source. Open Book. Self-Evolving. Koda AI.**
 
 Built with honesty. Powered by kindness. Secured by design.
 
